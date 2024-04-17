@@ -2,11 +2,11 @@
 import RPi.GPIO as GPIO
 import time
 
-# Use the physical pin numbers
-GPIO.setmode(GPIO.BOARD)
+# Use the Broadcom SOC channel
+GPIO.setmode(GPIO.BCM)
 
 # This is your input pin (replace with your actual pin number)
-input_pin = 4
+input_pin = 2
 
 # Set up the input pin with an initial state of HIGH
 GPIO.setup(input_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -20,3 +20,4 @@ try:
         time.sleep(0.01)
 except KeyboardInterrupt:
     GPIO.cleanup()  # Clean up GPIO settings before exiting
+
