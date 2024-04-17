@@ -6,7 +6,7 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 # This is your input pin (replace with your actual pin number)
-input_pin = 2
+input_pin = 27
 
 # Set up the input pin with an initial state of HIGH
 GPIO.setup(input_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -20,4 +20,5 @@ try:
         time.sleep(0.01)
 except KeyboardInterrupt:
     GPIO.cleanup()  # Clean up GPIO settings before exiting
+
 
