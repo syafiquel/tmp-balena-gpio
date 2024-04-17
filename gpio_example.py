@@ -5,18 +5,26 @@ import time
 # Use the Broadcom SOC channel
 GPIO.setmode(GPIO.BCM)
 
-# This is your input pin (replace with your actual pin number)
-input_pin = 26
+# This is your output pin (replace with your actual pin number)
+output_pin = 18
 
-# Set up the input pin with an initial state of DOWN
-GPIO.setup(input_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# Set up the output pin
+GPIO.setup(output_pin, GPIO.OUT)
+
+# Initialize the pin to LOW
+GPIO.output(output_pin, GPIO.LOW)
 
 try:
-    while True:
-        # Wait for a rising edge on the input pin
-        GPIO.wait_for_edge(input_pin, GPIO.RISING)
-        print("Rising edge detected on pin {}".format(input_pin))
-        # Debounce the switch by waiting for 0.01 seconds
-        time.sleep(0.01)
+    # Send 12 HIGH pulses
+    for i in range(12):
+        # Set the pin to HIGH
+        GPIO.output(output_pin, GPIO.HIGH)
+        # Wait for 1 second
+        time.sleep(1)
+        # Set the pin to LOW
+        GPIO.output(output_pin, GPIO.LOW)
+        # Wait for 1 second
+        time.sleep(1)
 except KeyboardInterrupt:
     GPIO.cleanup()  # Clean up GPIO settings before exiting
+
