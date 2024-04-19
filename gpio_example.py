@@ -6,7 +6,7 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 # This is your output pin (replace with your actual pin number)
-output_pin = 18
+output_pin = 26
 
 # Set up the output pin
 GPIO.setup(output_pin, GPIO.OUT)
@@ -15,14 +15,7 @@ GPIO.setup(output_pin, GPIO.OUT)
 GPIO.output(output_pin, GPIO.LOW)
 
 try:
-    # Send 12 HIGH pulses
-    for i in range(12):
-        # Set the pin to HIGH
         GPIO.output(output_pin, GPIO.HIGH)
-        # Wait for 1 second
-        time.sleep(1)
-        # Set the pin to LOW
-        GPIO.output(output_pin, GPIO.LOW)
         # Wait for 1 second
         time.sleep(1)
 except KeyboardInterrupt:
