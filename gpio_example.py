@@ -2,22 +2,30 @@
 import RPi.GPIO as GPIO
 import time
 
-# Use the Broadcom SOC channel
+# Set the GPIO mode
 GPIO.setmode(GPIO.BCM)
 
-# This is your output pin (replace with your actual pin number)
-output_pin = 26
+# Set the GPIO pin for PWM output
+PWM_PIN = 4
+GPIO.setup(PWM_PIN, GPIO.OUT)
 
-# Set up the output pin
-GPIO.setup(output_pin, GPIO.OUT)
+# Set the frequency and duty cycle
+FREQUENCY = 50  # Frequency in Hz
+DUTY_CYCLE = 50  # Duty cycle in %
 
-# Initialize the pin to LOW
-GPIO.output(output_pin, GPIO.LOW)
+# Create a PWM instance
+pwm = GPIO.PWM(PWM_PIN, FREQUENCY)
 
-try:
-        GPIO.output(output_pin, GPIO.HIGH)
-        # Wait for 1 second
-        time.sleep(1)
-except KeyboardInterrupt:
-    GPIO.cleanup()  # Clean up GPIO settings before exiting
+# Start the PWM output
+pwm.start(DUTY_CYCLE)
+
+# Run for a while
+time.sleep(10)
+
+# Stop the PWM output
+pwm.stop()
+
+# Clean up the GPIO
+GPIO.cleanup()
+
 
